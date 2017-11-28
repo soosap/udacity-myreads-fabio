@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Book = ({author, titel, backgroundurl}) => {
+const Book = ({author, title, backgroundurl}) => {
   return (
 
     <li>
@@ -17,7 +17,7 @@ const Book = ({author, titel, backgroundurl}) => {
             </select>
           </div>
         </div>
-        <div className="book-title">{titel}</div>
+        <div className="book-title">{title}</div>
         <div className="book-authors">{author}</div>
       </div>
     </li>
