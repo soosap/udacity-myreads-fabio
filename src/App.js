@@ -76,8 +76,9 @@ moveBook = (id, from, to) => {
 }
 
 render() {
-console.log(currentlyReadingObjects);
+
 const currentlyReadingObjects = books.filter(book => this.state.currentlyReading.includes(book.id))
+console.log(currentlyReadingObjects);
 const wantToReadObjects = books.filter(book => this.state.wantToRead.includes(book.id))
 const readObjects = books.filter(book => this.state.read.includes(book.id))
 
