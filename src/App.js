@@ -52,9 +52,9 @@ const books = [
 class BooksApp extends React.Component {
   state = {
 
-    currentlyReadingBooks: ["HarperMockingbird","EnderCard"],
-    wantToReadBooks: ["David1776","J.K.Stone"],
-    readBooks: ["J.R.R.Hobbit","SeussGo","MarkSawyer"],
+    currentlyReading: ["HarperMockingbird","EnderCard"],
+    wantToRead: ["David1776","J.K.Stone"],
+    read: ["J.R.R.Hobbit","SeussGo","MarkSawyer"],
 
 
     /**
@@ -66,13 +66,20 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+moveBook = (id, from, to) => {
+  const index = this.state[from].indexOf(id);
+  const updatedFrom = this.state[from].splice(index, 1);
+  const updatedTo = this.state[to].push(id);
+  this.setState((state) =>({ [from]: updatedFrom, [to]: updatedTo }))
 
+
+}
 
 render() {
-
-const currentlyReadingBookObjects = books.filter(book => this.state.currentlyReadingBooks.includes(book.id))
-const wantToReadBookObjects = books.filter(book => this.state.wantToReadBooks.includes(book.id))
-const readBookObjects = books.filter(book => this.state.readBooks.includes(book.id))
+console.log(currentlyReadingObjects);
+const currentlyReadingObjects = books.filter(book => this.state.currentlyReading.includes(book.id))
+const wantToReadObjects = books.filter(book => this.state.wantToRead.includes(book.id))
+const readObjects = books.filter(book => this.state.read.includes(book.id))
 
     return (
       <div className="app">
@@ -104,14 +111,14 @@ const readBookObjects = books.filter(book => this.state.readBooks.includes(book.
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf shelfTitle="Currently Reading">
-                  {currentlyReadingBookObjects.map(book => <Book key={book.id} author={book.author} title={book.title} backgroundurl={book.backgroundurl}/>)}
+                <BookShelf shelfTitle="Currently Reading" shelfId="currentlyReading">
+                  {currentlyReadingObjects.map(book => <Book key={book.id} author={book.author} title={book.title} backgroundurl={book.backgroundurl} shelf="currentlyReading" moveBook={this.moveBook}/>)}
                 </BookShelf>
-                <BookShelf shelfTitle="Currently Reading">
-                  {wantToReadBookObjects.map(book => <Book key={book.id} author={book.author} title={book.title} backgroundurl={book.backgroundurl}/>)}
+                <BookShelf shelfTitle="Want to Read" shelfId="wantToRead">
+                  {wantToReadObjects.map(book => <Book key={book.id} author={book.author} title={book.title} backgroundurl={book.backgroundurl} shelf="wantToRead" moveBook={this.moveBook}/>)}
                 </BookShelf>
-                <BookShelf shelfTitle="Currently Reading">
-                  {readBookObjects.map(book => <Book key={book.id} author={book.author} title={book.title} backgroundurl={book.backgroundurl}/>)}
+                <BookShelf shelfTitle="Read" shelfId="read">
+                  {readObjects.map(book => <Book key={book.id} author={book.author} title={book.title} backgroundurl={book.backgroundurl} shelf="read" moveBook={this.moveBook}/>)}
                 </BookShelf>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Book from '../src/Book.js'
 
-const BookShelf = ({shelfTitle, children}) => {
+const BookShelf = ({shelfTitle, shelfId, children, moveBook}) => {
   return (
 
 
