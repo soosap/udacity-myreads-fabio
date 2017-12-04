@@ -69,10 +69,9 @@ class BooksApp extends React.Component {
 moveBook = (id, from, to) => {
   const index = this.state[from].indexOf(id);
   const updatedFrom = this.state[from].splice(index, 1);
+  console.log('updatedFrom', updatedFrom);
   const updatedTo = this.state[to].push(id);
   this.setState((state) =>({ [from]: updatedFrom, [to]: updatedTo }))
-
-
 }
 
 render() {
