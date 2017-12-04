@@ -73,10 +73,13 @@ class BooksApp extends React.Component {
 
   moveBook = (id, from, to) => {
     const index = this.state[from].indexOf(id);
-    const updatedFrom = this.state[from].splice(index, 1);
+    const updatedFrom = [...this.state[from]].splice(index, 1);
     console.log('updatedFrom', updatedFrom);
     console.log('this.state[to]', this.state[to]);
     console.log('id', id);
+    console.log('index', index);
+    console.log('this.state[from]', this.state[from]);
+
     // hier war des problem....
     // react state darf man nie direkt manipulieren mit this.state.push(x)
     // dieses push ändert den state direkt
@@ -146,6 +149,7 @@ class BooksApp extends React.Component {
                       backgroundurl={book.backgroundurl}
                       shelf="currentlyReading"
                       moveBook={this.moveBook}
+                      id={book.id}
                     />
                   ))}
                 </BookShelf>
@@ -158,6 +162,7 @@ class BooksApp extends React.Component {
                       backgroundurl={book.backgroundurl}
                       shelf="wantToRead"
                       moveBook={this.moveBook}
+                      id={book.id}
                     />
                   ))}
                 </BookShelf>
@@ -170,6 +175,7 @@ class BooksApp extends React.Component {
                       backgroundurl={book.backgroundurl}
                       shelf="read"
                       moveBook={this.moveBook}
+                      id={book.id}
                     />
                   ))}
                 </BookShelf>
